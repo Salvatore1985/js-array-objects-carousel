@@ -52,39 +52,79 @@ const city = [
 
 
 const carouselElement = document.querySelector(".my-carousel-images");
-console.log(carouselElement);
+/* console.log(carouselElement); */
 carouselElement.classList.add("position-relative", "text-white");
 
 const thumbnailsElement = document.querySelector(".my-thumbnails");
 thumbnailsElement.classList.add("d-flex")
 
+
+
 let carousel = "";
 let thumbnails = "";
 
 for (let i = 0; i < city.length; i++) {
-    carousel = ` 
+    carousel += `
+<div class="my-img-container"> 
     <img src="${city[i].items}" alt="${city[i].title}">
     <div class=" position-absolute bottom-0 text-end p-5 w-100">
-    <h2>${city[i].title}</h2>
-    <p>${city[i].text}</p>
+        <h2>${city[i].title}</h2>
+        <p>${city[i].text}</p>
+    </div> 
 </div> 
-
 `
-    thumbnails += `<div >
-    <img class="img-fluid" src="${city[i].items}" alt="${city[i].title}">
+    thumbnails += `
+    <div class="my-cover-images" >
+        <img class="img-fluid" src="${city[i].items}" alt="${city[i].title}">
     </div>
 
 `
 
-
-
 };
 
-carouselElement.innerHTML = carousel;
+carouselElement.innerHTML += carousel;
 thumbnailsElement.innerHTML += thumbnails;
 
+let activeElement = 1;
 
-/* <div class=" position-absolute ">
-    <h2>${city[i].title}</h2>
-    <p>${city[i].text}</p>
-</div> */
+document.getElementsByClassName("my-img-container")[activeElement].classList.add("active");
+
+document.getElementsByClassName("my-cover-images")[activeElement].classList.add("active");
+
+//*PULSANTE SINISTRO
+document.querySelector(".my-previous ").addEventListener("click", function () {
+
+    document.getElementsByClassName("my-img-container")[activeElement].classList.remove("active");
+    document.getElementsByClassName("my-cover-images")[activeElement].classList.remove("active");
+
+    if (activeElement === 0) {
+        activeElement = city.length - 1;
+    } else {
+        activeElement--
+    }
+
+
+    document.getElementsByClassName("my-img-container")[activeElement].classList.add("active");
+    document.getElementsByClassName("my-cover-images")[activeElement].classList.add("active");
+});
+
+
+
+//*PULSANTE DESTRO
+document.querySelector(".my-next ").addEventListener("click", function () {
+
+    document.getElementsByClassName("my-img-container")[activeElement].classList.remove("active");
+    document.getElementsByClassName("my-cover-images")[activeElement].classList.remove("active");
+
+
+
+    if (activeElement === city.length - 1) {
+        activeElement = 0;
+    } else {
+        activeElement++
+    }
+
+    document.getElementsByClassName("my-img-container")[activeElement].classList.add("active");
+    document.getElementsByClassName("my-cover-images")[activeElement].classList.add("active");
+}
+);

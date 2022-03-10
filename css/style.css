@@ -15,6 +15,13 @@ div.my-carousel-images{
     height: 80%;
     width: 100%;
 }
+.my-img-container{
+    display: none;
+}
+
+.my-img-container.active{
+    display: block;
+}
 
 div.my-thumbnails{
     background-color: violet;
@@ -26,12 +33,18 @@ div.my-carousel-images img{
     height: 100%;
   
 }
-
+div.my-thumbnails  div.active
+{
+    filter: brightness(2);
+    border: 2.5px solid gray;
+  }
 
 div.my-thumbnails img{
+    filter: brightness(.5);
+    height: 160px;
+    }
 
- height: 160px;
-}
+
 div.my-previous,
 div.my-next{
     height: 40px;
