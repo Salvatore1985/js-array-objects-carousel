@@ -66,7 +66,7 @@ let thumbnails = "";
 for (let i = 0; i < city.length; i++) {
     carousel += `
 <div class="my-img-container"> 
-    <img src="${city[i].items}" alt="${city[i].title}">
+    <img  class="img-fluid" src="${city[i].items}" alt="${city[i].title}">
     <div class=" position-absolute bottom-0 text-end p-5 w-100">
         <h2>${city[i].title}</h2>
         <p>${city[i].text}</p>
@@ -91,7 +91,29 @@ document.getElementsByClassName("my-img-container")[activeElement].classList.add
 
 document.getElementsByClassName("my-cover-images")[activeElement].classList.add("active");
 
+
+setInterval(prova, 3000);
+function prova() {
+
+    document.getElementsByClassName("my-img-container")[activeElement].classList.remove("active");
+    document.getElementsByClassName("my-cover-images")[activeElement].classList.remove("active");
+
+    if (activeElement === 0) {
+        activeElement = city.length - 1;
+    } else {
+        activeElement--
+    }
+
+
+    document.getElementsByClassName("my-img-container")[activeElement].classList.add("active");
+    document.getElementsByClassName("my-cover-images")[activeElement].classList.add("active");
+
+
+}
+
+
 //*PULSANTE SINISTRO
+
 document.querySelector(".my-previous ").addEventListener("click", function () {
 
     document.getElementsByClassName("my-img-container")[activeElement].classList.remove("active");
@@ -127,4 +149,4 @@ document.querySelector(".my-next ").addEventListener("click", function () {
     document.getElementsByClassName("my-img-container")[activeElement].classList.add("active");
     document.getElementsByClassName("my-cover-images")[activeElement].classList.add("active");
 }
-);
+); 
