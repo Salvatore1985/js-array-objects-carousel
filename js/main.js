@@ -49,11 +49,11 @@ const city = [
     },
 ];
 
-
+const carouselContainerElement = document.querySelector(".my-carousel-container");
+carouselContainerElement.classList.remove("px-5");
 
 const carouselElement = document.querySelector(".my-carousel-images");
-/* console.log(carouselElement); */
-carouselElement.classList.add("position-relative", "text-white");
+
 
 const thumbnailsElement = document.querySelector(".my-thumbnails");
 thumbnailsElement.classList.add("d-flex")
@@ -65,9 +65,11 @@ let thumbnails = "";
 
 for (let i = 0; i < city.length; i++) {
     carousel += `
-<div class="my-img-container"> 
-    <img src="${city[i].items}" alt="${city[i].title}">
-    <div class=" position-absolute bottom-0 text-end p-5 w-100">
+<div class="my-img-container "> 
+    <div>
+        <img  src="${city[i].items}" alt="${city[i].title}">
+    </div>    
+    <div class=" text-end p-5 w-100" id="wrapped-text">
         <h2>${city[i].title}</h2>
         <p>${city[i].text}</p>
     </div> 
@@ -75,7 +77,7 @@ for (let i = 0; i < city.length; i++) {
 `
     thumbnails += `
     <div class="my-cover-images" >
-        <img class="img-fluid" src="${city[i].items}" alt="${city[i].title}">
+        <img src="${city[i].items}" alt="${city[i].title}">
     </div>
 
 `
@@ -91,7 +93,43 @@ document.getElementsByClassName("my-img-container")[activeElement].classList.add
 
 document.getElementsByClassName("my-cover-images")[activeElement].classList.add("active");
 
+/**Vai a Sinistra */
+/* setInterval(goLeftCover, 3000); */
+function goLeftCover() {
+    document.getElementsByClassName("my-img-container")[activeElement].classList.remove("active");
+    document.getElementsByClassName("my-cover-images")[activeElement].classList.remove("active");
+
+    if (activeElement === 0) {
+        activeElement = city.length - 1;
+    } else {
+        activeElement--
+    }
+
+
+    document.getElementsByClassName("my-img-container")[activeElement].classList.add("active");
+    document.getElementsByClassName("my-cover-images")[activeElement].classList.add("active");
+}
+
+/**Vai a Destra */
+setInterval(goRightCover, 3000);
+function goRightCover() {
+    document.getElementsByClassName("my-img-container")[activeElement].classList.remove("active");
+    document.getElementsByClassName("my-cover-images")[activeElement].classList.remove("active");
+
+
+
+    if (activeElement === city.length - 1) {
+        activeElement = 0;
+    } else {
+        activeElement++
+    }
+
+    document.getElementsByClassName("my-img-container")[activeElement].classList.add("active");
+    document.getElementsByClassName("my-cover-images")[activeElement].classList.add("active");
+   
+}
 //*PULSANTE SINISTRO
+
 document.querySelector(".my-previous ").addEventListener("click", function () {
 
     document.getElementsByClassName("my-img-container")[activeElement].classList.remove("active");
@@ -127,4 +165,4 @@ document.querySelector(".my-next ").addEventListener("click", function () {
     document.getElementsByClassName("my-img-container")[activeElement].classList.add("active");
     document.getElementsByClassName("my-cover-images")[activeElement].classList.add("active");
 }
-);
+); 
