@@ -93,6 +93,7 @@ document.getElementsByClassName("my-img-container")[activeElement].classList.add
 
 document.getElementsByClassName("my-cover-images")[activeElement].classList.add("active");
 
+
 /**Vai a Sinistra */
 /* setInterval(goLeftCover, 3000); */
 function goLeftCover() {
@@ -126,7 +127,7 @@ function goRightCover() {
 
     document.getElementsByClassName("my-img-container")[activeElement].classList.add("active");
     document.getElementsByClassName("my-cover-images")[activeElement].classList.add("active");
-   
+
 }
 //*PULSANTE SINISTRO
 
